@@ -42,10 +42,17 @@ public class ScoreManager : MonoBehaviour
         UIManager.instance.UpdateDiamondScore(Dscore);
 
         // Save new Diamond High Score if needed
-        if (Dscore > DHscore)
+        if (PlayerPrefs.HasKey("DHscore"))
         {
-            DHscore = Dscore;
-            PlayerPrefs.SetInt("DHscore", DHscore);
+        if (Dscore > PlayerPrefs.GetInt("DHscore"))
+        {
+            //DHscore = Dscore;
+            PlayerPrefs.SetInt("DHscore", Dscore);
+        }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("DHscore", Dscore);
         }
     }
 
